@@ -1,6 +1,7 @@
 package com.example.myapplication.ui.tabcontainer.contacts;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,13 +11,17 @@ import android.view.View;
 import com.example.myapplication.BR;
 import com.example.myapplication.R;
 import com.example.myapplication.base.BaseFragment;
+import com.example.myapplication.data.models.Contact;
 import com.example.myapplication.databinding.FragmentContactsBinding;
 import com.example.myapplication.ui.adapters.TabsListRecyclerAdapter;
+import com.example.myapplication.ui.details.DetailActivity;
+import com.example.myapplication.utils.AppConstants;
+import com.google.gson.Gson;
 
 import javax.inject.Inject;
 
 public class ContactsFragment extends BaseFragment<FragmentContactsBinding, ContactsViewModel>
-        implements ContactsViewNavigator {
+        implements ContactsViewNavigator, TabsListRecyclerAdapter.BlogAdapterListener {
 
     @Inject
     ContactsViewModel mContactsViewModel;
@@ -73,6 +78,7 @@ public class ContactsFragment extends BaseFragment<FragmentContactsBinding, Cont
 //        mFragmentMainBinding
         mContactsViewModel.setNavigator(this);
         mContactsViewModel.fetchContactsList();
+        tabsListRecyclerAdapter.setListener(this);
         mFragmentContactsBinding.contactsRv.setAdapter(tabsListRecyclerAdapter);
         mFragmentContactsBinding.contactsRv.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
         tabsListRecyclerAdapter.notifyDataSetChanged();
@@ -82,5 +88,12 @@ public class ContactsFragment extends BaseFragment<FragmentContactsBinding, Cont
     public void onAttach(Context context) {
         this.context = context;
         super.onAttach(context);
+    }
+
+    @Override
+    public void onItemClick(Contact contact) {
+        Intent intent = DetailActivity.newIntent(context);
+        intent.putExtra(AppConstants.CONTACT_ATTACH, new Gson().toJson(contact));
+        startActivity(intent);
     }
 }

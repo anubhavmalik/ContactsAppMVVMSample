@@ -21,18 +21,18 @@ public class ContactsItemViewModel {
     }
 
     public void onItemClick() {
-        contactsItemClickListener.onItemClick(mListItem.getId());
+        contactsItemClickListener.onItemClick(mListItem);
     }
 
     public String getFullName() {
-        return (firstName == null ? "" : firstName) + " " + (lastName == null ? "" : lastName);
+        return mListItem.getFullName();
     }
 
     public String getInitials() {
-        return (firstName == null ? "" : firstName.charAt(0)) + " " + (lastName == null ? "" : lastName.charAt(0));
+        return mListItem.getInitials();
     }
 
     public interface ContactsItemClickListener {
-        void onItemClick(int id);
+        void onItemClick(Contact contact);
     }
 }

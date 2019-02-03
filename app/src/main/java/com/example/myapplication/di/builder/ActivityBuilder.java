@@ -9,6 +9,8 @@
 package com.example.myapplication.di.builder;
 
 
+import com.example.myapplication.ui.details.DetailActivity;
+import com.example.myapplication.ui.details.DetailActivityModule;
 import com.example.myapplication.ui.tabcontainer.TabContainerActivity;
 import com.example.myapplication.ui.tabcontainer.TabContainerModule;
 import com.example.myapplication.ui.tabcontainer.contacts.ContactsProvider;
@@ -23,11 +25,13 @@ public abstract class ActivityBuilder {
     @ContributesAndroidInjector(modules = {
             TabContainerModule.class,
             ContactsProvider.class,
-            MessagesProvider.class
+            MessagesProvider.class,
     })
-
-//    TODO: Replace with fragments in the tab container activity
-
     abstract TabContainerActivity bindTabbedContainerActivity();
+
+    @ContributesAndroidInjector(modules = {
+            DetailActivityModule.class,
+    })
+    abstract DetailActivity bindDetailActivity();
 
 }

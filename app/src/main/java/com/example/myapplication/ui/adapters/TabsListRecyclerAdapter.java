@@ -88,7 +88,7 @@ public class TabsListRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder
     }
 
     public interface BlogAdapterListener {
-        void onItemClick(String id);
+        void onItemClick(Contact contact);
     }
 
 
@@ -118,8 +118,8 @@ public class TabsListRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder
         }
 
         @Override
-        public void onItemClick(int id) {
-            //do something
+        public void onItemClick(Contact contact) {
+            mListener.onItemClick(contact);
         }
     }
 

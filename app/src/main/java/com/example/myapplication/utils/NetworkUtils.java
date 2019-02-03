@@ -8,32 +8,17 @@
 
 package com.example.myapplication.utils;
 
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.wifi.WifiManager;
-import android.os.PowerManager;
-import android.support.design.widget.Snackbar;
 import android.telephony.TelephonyManager;
 
 public final class NetworkUtils {
 
-    public static final String NOTIFICATION_CHANNEL_ID = "com.mojotimes.android";
-    public static final String NOTIFICATION_CHANNEL_NAME = "MojoTimes";
-    public static final int CONNECTION_WIFI_CONNECTED = 1;
-    public static final int CONNECTION_WWAN_CONNECTED = 2;
-    public static final int CONNECTION_NOT_CONNECTED = 3;
-    private final static String CONNECTIVITY_ACTION = "CONNECTIVITY_ACTION";
+    private static final int CONNECTION_WIFI_CONNECTED = 1;
+    private static final int CONNECTION_WWAN_CONNECTED = 2;
+    private static final int CONNECTION_NOT_CONNECTED = 3;
     public static String DEVICE_ID_ENCRYPTION_KEY = "S1A3A7V1N19P20I3";
-    public static Snackbar downloadSBar;
-    public static String userName = "";
-    public static String userArea = "";
-    public static String phoneNumber = "";
-    private static WifiManager.WifiLock wifiLock;
-    private static PowerManager.WakeLock powerLock;
-    private static BroadcastReceiver connectionChangeReciever;
-    private static boolean launchConnectionChange = true;
 
     private NetworkUtils() {
         // This class is not publicly instantiable

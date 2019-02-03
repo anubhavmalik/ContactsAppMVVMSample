@@ -16,6 +16,14 @@ public class Contact {
         this.email = email;
     }
 
+    public String getFullName() {
+        return (firstName == null ? "" : firstName) + " " + (lastName == null ? "" : lastName);
+    }
+
+    public String getInitials() {
+        return (firstName == null ? "" : firstName.charAt(0)) + " " + (lastName == null ? "" : lastName.charAt(0));
+    }
+
     public String getEmail() {
         return email;
     }
