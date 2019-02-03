@@ -4,12 +4,14 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
 import com.example.myapplication.BR;
 import com.example.myapplication.R;
 import com.example.myapplication.base.BaseFragment;
 import com.example.myapplication.databinding.FragmentContactsBinding;
+import com.example.myapplication.ui.adapters.TabsListRecyclerAdapter;
 
 import javax.inject.Inject;
 
@@ -18,6 +20,9 @@ public class ContactsFragment extends BaseFragment<FragmentContactsBinding, Cont
 
     @Inject
     ContactsViewModel mContactsViewModel;
+
+    @Inject
+    TabsListRecyclerAdapter tabsListRecyclerAdapter;
 
     Context context;
 
@@ -55,7 +60,6 @@ public class ContactsFragment extends BaseFragment<FragmentContactsBinding, Cont
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mContactsViewModel.setNavigator(this);
     }
 
     @Override
@@ -67,6 +71,11 @@ public class ContactsFragment extends BaseFragment<FragmentContactsBinding, Cont
 
     private void setUp() {
 //        mFragmentMainBinding
+        mContactsViewModel.setNavigator(this);
+        mContactsViewModel.fetchContactsList();
+        mFragmentContactsBinding.contactsRv.setAdapter(tabsListRecyclerAdapter);
+        mFragmentContactsBinding.contactsRv.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
+        tabsListRecyclerAdapter.notifyDataSetChanged();
     }
 
     @Override

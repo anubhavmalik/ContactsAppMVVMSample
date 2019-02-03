@@ -3,15 +3,25 @@ package com.example.myapplication.data.models;
 public class Contact {
 
     private int id;
-    private String contactNumber;
-    private String contactFirstName;
-    private String contactLastName;
+    private String phone;
+    private String firstName;
+    private String lastName;
+    private String email;
 
-    public Contact(String contactNumber, String contactFirstName, String contactLastName) {
+    public Contact(int id, String contactNumber, String contactFirstName, String contactLastName, String email) {
         this.id = id;
-        this.contactNumber = contactNumber;
-        this.contactFirstName = contactFirstName;
-        this.contactLastName = contactLastName;
+        this.phone = contactNumber;
+        this.firstName = contactFirstName;
+        this.lastName = contactLastName;
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public int getId() {
@@ -22,27 +32,27 @@ public class Contact {
         this.id = id;
     }
 
-    public String getContactNumber() {
-        return contactNumber;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setContactNumber(String contactNumber) {
-        this.contactNumber = contactNumber;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    public String getContactFirstName() {
-        return contactFirstName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setContactFirstName(String contactFirstName) {
-        this.contactFirstName = contactFirstName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getContactLastName() {
-        return contactLastName;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setContactLastName(String contactLastName) {
-        this.contactLastName = contactLastName;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 }

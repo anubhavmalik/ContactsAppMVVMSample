@@ -10,16 +10,21 @@ import com.example.myapplication.utils.rx.SchedulerProvider;
 
 public class ContactsViewModel extends BaseViewModel<ContactsViewNavigator> {
 
-    public ObservableArrayList<Contact> contactObservableArrayList = new ObservableArrayList<>();
+    public ObservableArrayList<Contact> contactsObservableArrayList = new ObservableArrayList<>();
+    private ContactsViewNavigator navigator;
+
+    @Override
+    public void setNavigator(ContactsViewNavigator navigator) {
+        this.navigator = navigator;
+    }
 
     public ContactsViewModel(DataManager dataManager, SchedulerProvider schedulerProvider) {
         super(dataManager, schedulerProvider);
-        fetchContactsList();
     }
 
-    private void fetchContactsList() {
-        contactObservableArrayList.addAll(JsonParseHelper.getInstance().getContactsListFromJson());
-        getNavigator().notifyListFetched();
+    public void fetchContactsList() {
+        contactsObservableArrayList.addAll(JsonParseHelper.getInstance().getContactsListFromJson());
+        navigator.notifyListFetched();
     }
 
 }

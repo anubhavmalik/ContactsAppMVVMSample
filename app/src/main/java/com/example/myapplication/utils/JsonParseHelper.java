@@ -2,6 +2,7 @@ package com.example.myapplication.utils;
 
 import com.example.myapplication.app.MyApplication;
 import com.example.myapplication.data.models.Contact;
+import com.example.myapplication.data.models.Message;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -23,6 +24,9 @@ public class JsonParseHelper {
         return jsonParseHelper;
     }
 
+    public ArrayList<Message> getMessagesListFromJson(){
+        return new ArrayList<>();
+    }
     public ArrayList<Contact> getContactsListFromJson() {
         ArrayList<Contact> contactArrayList = new ArrayList<>();
         String json = loadJSONFromAsset();

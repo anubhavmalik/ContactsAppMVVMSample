@@ -3,4 +3,28 @@
     <color name="colorPrimary">#F17349</color>
     <color name="colorPrimaryDark">#FF5722</color>
     <color name="colorAccent">#2196F3</color>
+
+    <string-array name="contactsColors">
+        <!-- level=1 -->
+        <item>#311b92</item>
+        <!-- level=2 -->
+        <item>#0d47a1</item>
+        <!-- level=3 -->
+        <item>#006064</item>
+        <!-- level=4 -->
+        <item>#33691e</item>
+        <!-- level=5 -->
+        <item>#1b5e20</item>
+        <!-- level=6 -->
+        <item>#004d40</item>
+        <!-- level=7 -->
+        <item>#827717</item>
+        <!-- level=8 -->
+        <item>#999900</item>
+        <!-- level=9 -->
+        <item>#e65100</item>
+        <!-- level=10 -->
+        <item>#bf360c</item>
+    </string-array>
+
 </resources>

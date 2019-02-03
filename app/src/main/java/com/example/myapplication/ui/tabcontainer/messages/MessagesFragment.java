@@ -34,7 +34,7 @@ public class MessagesFragment extends BaseFragment<FragmentMessagesBinding, Mess
 
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_contacts;
+        return R.layout.fragment_messages;
     }
 
     @Override
@@ -55,13 +55,18 @@ public class MessagesFragment extends BaseFragment<FragmentMessagesBinding, Mess
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mMessagesViewModel.setNavigator(this);
+        mMessagesViewModel.setMessagesViewNavigator(this);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mFragmentMessagesBinding = getViewDataBinding();
+        mMessagesViewModel.fetchMessagesList();
+        setUp();
+    }
+
+    private void setUp() {
     }
 
     @Override

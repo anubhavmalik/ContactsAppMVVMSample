@@ -6,5 +6,5 @@ import dagger.android.ContributesAndroidInjector;
 @Module
 public abstract class MessagesProvider {
     @ContributesAndroidInjector(modules = MessagesModule.class)
-    abstract MessagesFragment provideContactsFragmentFactory();
+    abstract MessagesFragment provideMessagesFragmentFactory();
 }

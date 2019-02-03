@@ -25,7 +25,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:recyclerAdapter="@{viewModel.contactsObservableArrayList}"/>
+            tools:listitem="@layout/item_contacts_view"
+            app:contactsAdapter="@{viewModel.contactsObservableArrayList}"/>
 
     </android.support.constraint.ConstraintLayout>
 
