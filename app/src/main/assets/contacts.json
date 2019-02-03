@@ -1,0 +1,76 @@
+[
+  {
+    "fname": "Cassio",
+    "lname": "Zen",
+    "phone": "+919711318036",
+    "email": "cassiozen@gmail.com"
+  },
+  {
+    "fname": "Dan",
+    "lname": "Abramov",
+    "phone": "+919711318036",
+    "email": "gaearon@somewhere.com"
+
+  },
+  {
+    "fname": "Pete",
+    "lname": "Hunt",
+    "phone": "+919711318036",
+    "email": "floydophone@somewhere.com"
+  },
+  {
+    "fname": "Paul",
+    "lname": "O’Shannessy",
+    "phone": "+919711318036",
+    "email": "zpao@somewhere.com"
+  },
+  {
+    "fname": "Ryan",
+    "lname": "Florence",
+    "phone": "+919711318036",
+    "email": "rpflorence@somewhere.com"
+  },
+  {
+    "fname": "Sebastian",
+    "lname": "Markbage",
+    "phone": "+919711318036",
+    "email": "sebmarkbage@here.com"
+  },
+  {
+    "fname": "Cassio2",
+    "lname": "Zen",
+    "phone": "+919711318036",
+    "email": "cassiozen@gmail.com"
+  },
+  {
+    "fname": "Dan2",
+    "lname": "Abramov",
+    "phone": "+919711318036",
+    "email": "gaearon@somewhere.com"
+
+  },
+  {
+    "fname": "Pete2",
+    "lname": "Hunt",
+    "phone": "+919711318036",
+    "email": "floydophone@somewhere.com"
+  },
+  {
+    "fname": "Paul2",
+    "lname": "O’Shannessy",
+    "phone": "+919711318036",
+    "email": "zpao@somewhere.com"
+  },
+  {
+    "fname": "Ryan2",
+    "lname": "Florence",
+    "phone": "+919711318036",
+    "email": "rpflorence@somewhere.com"
+  },
+  {
+    "fname": "Sebastian2",
+    "lname": "Markbage",
+    "phone": "+919711318036",
+    "email": "sebmarkbage@here.com"
+  }
+]
