@@ -1,0 +1,22 @@
+[
+  {
+    "senderId": "1",
+    "body": "Hi. Your OTP is: 661909",
+    "timestamp":"1549235163"
+  },
+  {
+    "senderId": "8",
+    "body": "Hi. Your OTP is: 101457",
+    "timestamp":"1549235498"
+  },
+  {
+    "senderId": "7",
+    "body": "Hi. Your OTP is: 998721",
+    "timestamp":"1549235991"
+  },
+  {
+    "senderId": "19",
+    "body": "Hi. Your OTP is: 430924",
+    "timestamp":"1549236311"
+  }
+]

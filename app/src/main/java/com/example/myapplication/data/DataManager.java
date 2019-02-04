@@ -8,7 +8,12 @@
 
 package com.example.myapplication.data;
 
+
+import com.example.myapplication.data.network.models.Requests.SmsMessageRequest;
+import com.example.myapplication.data.network.models.Responses.MessageResponseWrapper;
+
+import retrofit2.Call;
+
 public interface DataManager {
-//TODO: MAKE API METHODS HERE
-//    Observable<PostListingResponse> getHomePage();
+    Call<MessageResponseWrapper> sendMessageToServer(String API_KEY, String API_SECRET, SmsMessageRequest smsMessageRequest);
 }

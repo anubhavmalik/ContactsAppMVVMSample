@@ -3,6 +3,7 @@ package com.example.myapplication.ui.details;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.myapplication.BR;
@@ -83,5 +84,17 @@ public class DetailActivity extends BaseActivity<ActivityDetailBinding, DetailVi
     @Override
     public void openComposeMessageScreen() {
         //TODO: open compose screen
+        activityDetailBinding.messageContainer.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void endActivity(){
+        Toast.makeText(this, "Message has been sent", Toast.LENGTH_SHORT).show();
+        finish();
+    }
+
+    @Override
+    public void setLoading(boolean show) {
+        activityDetailBinding.progressBar.setVisibility(show ? View.VISIBLE : View.GONE);
     }
 }

@@ -10,11 +10,6 @@ package com.example.myapplication.data.network.requestLayer;
 
 import android.content.Context;
 
-import com.example.myapplication.BuildConfig;
-import com.example.myapplication.app.MyApplication;
-import com.example.myapplication.utils.AppConstants;
-import com.example.myapplication.utils.CommonUtils;
-import com.example.myapplication.utils.NetworkUtils;
 import com.example.myapplication.utils.SharedPrefsUtils;
 
 import java.io.IOException;
@@ -52,11 +47,11 @@ public class MyServiceInterceptor implements Interceptor {
         HttpUrl url = originalHttpUrl.newBuilder()
                 .build();
         Request.Builder requestBuilder = original.newBuilder()
-                .addHeader(AppConstants.DEVICE_ID, CommonUtils.getDevId(context))
-                .addHeader(AppConstants.AUTHORIZATION, sessionToken)
-                .addHeader(AppConstants.VERSION_NAME, BuildConfig.VERSION_NAME)
-                .addHeader(AppConstants.VERSION_CODE, Integer.toString(BuildConfig.VERSION_CODE))
-                .addHeader(AppConstants.CONNECTION_QUALITY, NetworkUtils.getNetworkGeneration(MyApplication.getNonUiContext()))
+//                .addHeader(AppConstants.DEVICE_ID, CommonUtils.getDevId(context))
+//                .addHeader(AppConstants.AUTHORIZATION, sessionToken)
+//                .addHeader(AppConstants.VERSION_NAME, BuildConfig.VERSION_NAME)
+//                .addHeader(AppConstants.VERSION_CODE, Integer.toString(BuildConfig.VERSION_CODE))
+//                .addHeader(AppConstants.CONNECTION_QUALITY, NetworkUtils.getNetworkGeneration(MyApplication.getNonUiContext()))
                 .url(url);
         Request request = requestBuilder.build();
         return chain.proceed(request);

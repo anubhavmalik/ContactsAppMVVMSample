@@ -4,7 +4,10 @@ import android.arch.lifecycle.ViewModelProvider;
 
 import com.example.myapplication.data.DataManager;
 import com.example.myapplication.factories.ViewModelProviderFactory;
+import com.example.myapplication.ui.adapters.MessagesRecyclerAdapter;
 import com.example.myapplication.utils.rx.SchedulerProvider;
+
+import java.util.ArrayList;
 
 import dagger.Module;
 import dagger.Provides;
@@ -15,6 +18,11 @@ public class MessagesModule {
     MessagesViewModel messagesViewModel(DataManager dataManager,
                                         SchedulerProvider schedulerProvider) {
         return new MessagesViewModel(dataManager, schedulerProvider);
+    }
+
+    @Provides
+    MessagesRecyclerAdapter provideMessageAdapter() {
+        return new MessagesRecyclerAdapter(new ArrayList<>());
     }
 
     @Provides

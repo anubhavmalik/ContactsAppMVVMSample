@@ -16,26 +16,33 @@ import java.util.ArrayList;
 public class JsonParseHelper {
 
     private static JsonParseHelper jsonParseHelper;
+    private static SharedPrefsUtils sharedPrefsUtils;
+    private static String json = "";
+    private static String messageJson = "";
 
-    public static JsonParseHelper getInstance(){
-        if (jsonParseHelper==null){
+    public static JsonParseHelper getInstance() {
+        if (jsonParseHelper == null) {
             jsonParseHelper = new JsonParseHelper();
+            sharedPrefsUtils = new SharedPrefsUtils();
         }
         return jsonParseHelper;
     }
 
-    public ArrayList<Message> getMessagesListFromJson(){
+    public ArrayList<Message> getMessagesListFromJson() {
         return new ArrayList<>();
     }
+
     public ArrayList<Contact> getContactsListFromJson() {
         ArrayList<Contact> contactArrayList = new ArrayList<>();
-        String json = loadJSONFromAsset();
+        if (json.isEmpty()) {
+            json = loadJSONFromAsset(true);
+        }
         Gson gson = new Gson();
         if (json != null) {
             if (!json.isEmpty()) {
                 try {
                     JSONArray jsonArray = new JSONArray(json);
-                    for(int i = 0 ; i < jsonArray.length(); i++){
+                    for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         contactArrayList.add(gson.fromJson(jsonObject.toString(), Contact.class));
                     }
@@ -47,20 +54,68 @@ public class JsonParseHelper {
         return contactArrayList;
     }
 
-    public String loadJSONFromAsset() {
+    public String loadJSONFromAsset(boolean getContactsList) {
         String json = "";
-        try {
-            InputStream is = MyApplication.getNonUiContext().getAssets().open("contacts.json");
-            int size = is.available();
-            byte[] buffer = new byte[size];
-            is.read(buffer);
-            is.close();
-            json = new String(buffer, "UTF-8");
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            return null;
+        if (getContactsList) {
+            try {
+                InputStream is;
+                is = MyApplication.getNonUiContext().getAssets().open("contacts.json");
+                int size = is.available();
+                byte[] buffer = new byte[size];
+                is.read(buffer);
+                is.close();
+                json = new String(buffer, "UTF-8");
+            } catch (IOException ex) {
+                ex.printStackTrace();
+                return null;
+            }
+        } else {
+            json = sharedPrefsUtils.getStringPreference(MyApplication.getNonUiContext(), AppConstants.MESSAGES_KEY);
         }
         return json;
     }
 
+    public Contact getSpecificContactFromJson(int senderId) {
+        ArrayList<Contact> list = getContactsListFromJson();
+        for (Contact contact : list) {
+            if (senderId == contact.getId()) {
+                return contact;
+            }
+        }
+        return null;
+    }
+
+    public void addJsonTextMessageToContact(int contactId, String body, long timestamp) {
+        if (sharedPrefsUtils.getStringPreference(MyApplication.getNonUiContext(), AppConstants.MESSAGES_KEY) != null) {
+            messageJson = loadJSONFromAsset(false);
+            try {
+                JSONArray jsonArray = new JSONArray(json);
+                jsonArray.put(jsonArray.length(), new Gson().toJson(new Message(contactId, body, timestamp)));
+                sharedPrefsUtils.setStringPreference(MyApplication.getNonUiContext(), AppConstants.MESSAGES_KEY, jsonArray.toString());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return;
+        } else {
+            sharedPrefsUtils.setStringPreference(MyApplication.getNonUiContext(), AppConstants.MESSAGES_KEY, "[]");
+            addJsonTextMessageToContact(contactId, body, timestamp);
+        }
+    }
+
+    public ArrayList<Message> getMessagesArrayList() {
+        ArrayList<Message> messageArrayList = new ArrayList<>();
+        if (messageJson.isEmpty()) {
+            messageJson = loadJSONFromAsset(false);
+        }
+        try {
+            JSONArray jsonArray = new JSONArray(messageJson);
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                messageArrayList.add(new Gson().fromJson(jsonObject.toString(), Message.class));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return messageArrayList;
+    }
 }

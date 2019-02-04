@@ -50,7 +50,7 @@ public class AppModule {
     static ApiService provideApiService(OkHttpClient okHttpClient, Gson gson) {
         Retrofit.Builder retrofitBuilder;
         retrofitBuilder = new Retrofit.Builder()
-                .baseUrl("https://jsonplaceholder.typicode.com/")
+                .baseUrl("https://rest.nexmo.com/")
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create());

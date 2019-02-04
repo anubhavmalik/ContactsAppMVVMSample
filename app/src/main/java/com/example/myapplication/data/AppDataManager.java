@@ -10,18 +10,20 @@ package com.example.myapplication.data;
 
 import android.content.Context;
 
+import com.example.myapplication.data.network.models.Requests.SmsMessageRequest;
+import com.example.myapplication.data.network.models.Responses.MessageResponseWrapper;
 import com.example.myapplication.data.network.requestLayer.ApiService;
 import com.example.myapplication.utils.SharedPrefsUtils;
+import com.google.gson.Gson;
 
 import javax.inject.Inject;
+
+import retrofit2.Call;
 
 /*
  *   This is a class which is just a
  *   wrapper over all network and
  *   db calls.
- *   To make the code better, you can
- *   write your calls here and get
- *   response accordingly.
  *
  */
 
@@ -33,18 +35,19 @@ public class AppDataManager implements DataManager {
 
     private final SharedPrefsUtils mPreferencesHelper;
 
-    private String lat;
-
-    private String lng;
-
-    private SharedPrefsUtils sharedPrefsUtils = new SharedPrefsUtils();
+    private final Gson mGson;
 
     @Inject
-    public AppDataManager(Context context, SharedPrefsUtils preferencesHelper, ApiService apiHelper) {
+    public AppDataManager(Context context, SharedPrefsUtils preferencesHelper, ApiService apiHelper, Gson gson) {
         mContext = context;
         mPreferencesHelper = preferencesHelper;
         mApiService = apiHelper;
-//        mGson = gson;
+        mGson = gson;
+    }
+
+    @Override
+    public Call<MessageResponseWrapper> sendMessageToServer(String API_KEY, String API_SECRET,  SmsMessageRequest smsMessageRequest) {
+        return mApiService.postSmsToApi(API_KEY, API_SECRET, smsMessageRequest);
     }
 
     //TODO: Implement the api methods here

@@ -107,14 +107,40 @@
 
         </LinearLayout>
 
-        <FrameLayout
+        <android.support.constraint.ConstraintLayout
             android:id="@+id/message_container"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:visibility="invisible"
             app:layout_constraintTop_toBottomOf="@id/detail_phone_lr"
             app:layout_constraintBottom_toTopOf="@id/detail_message_btn"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <TextView
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_margin="32dp"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_width="0dp"
+                android:gravity="center"
+                android:layout_height="match_parent"
+                android:text="@{viewModel.body}"/>
+
+        </android.support.constraint.ConstraintLayout>
 
         <Button
             android:id="@+id/detail_message_btn"

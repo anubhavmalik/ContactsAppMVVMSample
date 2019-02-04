@@ -22,7 +22,7 @@ public class MessagesViewModel extends BaseViewModel<MessagesViewNavigator> {
     }
 
     public void fetchMessagesList() {
-        messagesObservableArrayList.addAll(JsonParseHelper.getInstance().getMessagesListFromJson());
+        messagesObservableArrayList.addAll(JsonParseHelper.getInstance().getMessagesArrayList());
         messagesViewNavigator.notifyListFetched();
     }
 }
