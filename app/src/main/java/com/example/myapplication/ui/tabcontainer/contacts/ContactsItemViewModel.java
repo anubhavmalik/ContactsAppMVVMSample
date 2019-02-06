@@ -1,7 +1,5 @@
 package com.example.myapplication.ui.tabcontainer.contacts;
 
-import android.util.Log;
-
 import com.example.myapplication.data.models.Contact;
 
 public class ContactsItemViewModel {
@@ -17,7 +15,6 @@ public class ContactsItemViewModel {
         this.lastName = mListItem.getLastName();
         this.mListItem = mListItem;
         this.contactsItemClickListener = contactsItemClickListener;
-        Log.d("KKKK", getFullName());
     }
 
     public void onItemClick() {

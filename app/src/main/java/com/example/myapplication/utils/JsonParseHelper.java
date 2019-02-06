@@ -71,6 +71,9 @@ public class JsonParseHelper {
             }
         } else {
             json = sharedPrefsUtils.getStringPreference(MyApplication.getNonUiContext(), AppConstants.MESSAGES_KEY);
+            if(json ==null){
+                json="";
+            }
         }
         return json;
     }
