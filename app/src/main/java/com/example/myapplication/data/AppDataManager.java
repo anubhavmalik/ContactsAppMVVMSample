@@ -46,9 +46,11 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
-    public Call<MessageResponseWrapper> sendMessageToServer(String API_KEY, String API_SECRET,  SmsMessageRequest smsMessageRequest) {
-        return mApiService.postSmsToApi(API_KEY, API_SECRET, smsMessageRequest);
+    public Call<MessageResponseWrapper> sendMessageToServer(String AUTH_KEY, String message, String sender, String target, String otp) {
+        return mApiService.postSmsToApi(AUTH_KEY, message, sender, target, otp);
     }
+
+//    authkey=263815AefZZPrIn2d5c6c530e&message=Hello, your OTP is : 999909&sender=ANUBHAVOTP&mobile=918076654542&otp=999909
 
     //TODO: Implement the api methods here
 }

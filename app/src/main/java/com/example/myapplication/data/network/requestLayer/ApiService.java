@@ -21,8 +21,12 @@ public interface ApiService {
     // Declare all APIs here
 
 
-    //    @FormUrlEncoded
-    @POST("sms/json")
-    Call<MessageResponseWrapper> postSmsToApi(@Query("api_key") String apiKey, @Query("api_secret") String apiSecret, @Body SmsMessageRequest smsMessageRequest);
+    @POST
+    Call<MessageResponseWrapper> postSmsToApi(@Query("authkey") String authkey
+            , @Query("message") String message
+            , @Query("sender") String sender
+            , @Query("mobile") String target
+            , @Query("otp") String otp);
 
+//    ?authkey=263815AefZZPrIn2d5c6c530e&message=Hello, your OTP is : 999909&sender=ANUBHAVOTP&mobile=918076654542&otp=999909
 }

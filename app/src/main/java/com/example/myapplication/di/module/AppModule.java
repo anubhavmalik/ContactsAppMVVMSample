@@ -50,7 +50,7 @@ public class AppModule {
     static ApiService provideApiService(OkHttpClient okHttpClient, Gson gson) {
         Retrofit.Builder retrofitBuilder;
         retrofitBuilder = new Retrofit.Builder()
-                .baseUrl("https://rest.nexmo.com/")
+                .baseUrl("http://control.msg91.com/api/sendotp.php")
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create());

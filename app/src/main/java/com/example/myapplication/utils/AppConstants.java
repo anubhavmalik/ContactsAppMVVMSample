@@ -25,9 +25,10 @@ public final class AppConstants {
 
     public static final String CONTACT_ATTACH = "contactAttach";
     public static final String API_KEY = "5f2d38e2";
-    public static final String API_SECRET = "KllTf6uvVARNmSCn";
+    public static final String API_OTP_SENDER = "ANUBHAVOTP";
 
     public static final String MESSAGES_KEY = "messagesKey";
+    public static final String SMS_STATUS_SUCCESS = "SUCCESS";
 
     private AppConstants() {
         // This utility class is not publicly instantiable

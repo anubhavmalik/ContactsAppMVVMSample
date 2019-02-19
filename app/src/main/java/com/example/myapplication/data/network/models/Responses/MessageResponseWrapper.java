@@ -6,26 +6,24 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class MessageResponseWrapper {
-    @SerializedName("message-count")
-    @Expose
-    private Integer messageCount;
-    @SerializedName("messages")
-    @Expose
-    private List<Message> messages = null;
+    @SerializedName("message")
+    private String message;
+    @SerializedName("type")
+    private String messageStatus;
 
-    public Integer getMessageCount() {
-        return messageCount;
+    public String getMessage() {
+        return message;
     }
 
-    public void setMessageCount(Integer messageCount) {
-        this.messageCount = messageCount;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
-    public List<Message> getMessages() {
-        return messages;
+    public String getMessageStatus() {
+        return messageStatus;
     }
 
-    public void setMessages(List<Message> messages) {
-        this.messages = messages;
+    public void setMessageStatus(String messageStatus) {
+        this.messageStatus = messageStatus;
     }
 }

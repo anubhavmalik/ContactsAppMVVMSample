@@ -25,15 +25,17 @@ public class DetailViewModel extends BaseViewModel<DetailNavigator> {
     public ObservableField<String> contactPhone;
     public ObservableField<String> contactInitials;
     public ObservableField<String> body;
+    private String otp = "";
     public boolean isMessageSent;
 
     public void setContact(Contact contact) {
         this.contact = contact;
+        otp = SmsAppService.newInstance().generateRandomOtp();
         contactName = new ObservableField<>(contact.getFullName());
         contactEmail = new ObservableField<>(contact.getEmail());
         contactInitials = new ObservableField<>(contact.getInitials());
         contactPhone = new ObservableField<>(contact.getPhone());
-        body = new ObservableField<>("Hi, your otp is : " + SmsAppService.newInstance().generateRandomOtp());
+        body = new ObservableField<>("Hi, your otp is : " + otp);
     }
 
     public void setDetailNavigator(DetailNavigator detailNavigator) {
@@ -46,31 +48,39 @@ public class DetailViewModel extends BaseViewModel<DetailNavigator> {
 
     public void composeMessage() {
 //        detailNavigator.openComposeMessageScreen();
-        if(!isMessageSent) {
+        if (!isMessageSent) {
             detailNavigator.openComposeMessageScreen();
             isMessageSent = !isMessageSent;
-        }
-        else {
+        } else {
             sendSms();
         }
     }
 
     public void sendSms() {
         detailNavigator.setLoading(true);
-        SmsMessageRequest smsMessageRequest = new SmsMessageRequest("NEXMO", contactPhone.get(), body.get());
         getDataManager()
-                .sendMessageToServer(AppConstants.API_KEY, AppConstants.API_SECRET, smsMessageRequest)
+                .sendMessageToServer(AppConstants.API_KEY, body.get(), AppConstants.API_OTP_SENDER, contactPhone.get(), otp)
                 .enqueue(new Callback<MessageResponseWrapper>() {
                     @Override
                     public void onResponse(Call<MessageResponseWrapper> call, Response<MessageResponseWrapper> response) {
                         detailNavigator.setLoading(false);
                         if (response.isSuccessful()) {
                             if (response.body() != null) {
-                                if (response.body().getMessages() != null) {
-                                    new JsonParseHelper().addJsonTextMessageToContact(contact.getId(), body.get(), System.currentTimeMillis());
-                                    detailNavigator.endActivity();
+                                if (response.body().getMessageStatus() != null) {
+                                    if (response.body().getMessageStatus().equalsIgnoreCase(AppConstants.SMS_STATUS_SUCCESS)) {
+                                        JsonParseHelper.getInstance().addJsonTextMessageToContact(contact.getId(), body.get(), System.currentTimeMillis());
+                                        detailNavigator.endActivity();
+                                    } else {
+                                        detailNavigator.handleError(false);
+                                    }
+                                } else {
+                                    detailNavigator.handleError(false);
                                 }
+                            } else {
+                                detailNavigator.handleError(false);
                             }
+                        } else {
+                            detailNavigator.handleError(false);
                         }
                     }
 
