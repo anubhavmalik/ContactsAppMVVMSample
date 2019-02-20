@@ -86,6 +86,7 @@ public class DetailActivity extends BaseActivity<ActivityDetailBinding, DetailVi
     public void openComposeMessageScreen() {
         //TODO: open compose screen
         activityDetailBinding.messageContainer.setVisibility(View.VISIBLE);
+        activityDetailBinding.detailMessageBtn.setText(getResources().getText(R.string.send_msg));
     }
 
     @Override

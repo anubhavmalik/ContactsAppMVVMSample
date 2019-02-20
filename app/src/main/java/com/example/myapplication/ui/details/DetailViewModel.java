@@ -1,5 +1,6 @@
 package com.example.myapplication.ui.details;
 
+import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
 
 import com.example.myapplication.base.BaseViewModel;
@@ -26,7 +27,7 @@ public class DetailViewModel extends BaseViewModel<DetailNavigator> {
     public ObservableField<String> contactInitials;
     public ObservableField<String> body;
     private String otp = "";
-    public boolean isMessageSent;
+    public ObservableBoolean isMessageSent;
 
     public void setContact(Contact contact) {
         this.contact = contact;
@@ -47,10 +48,9 @@ public class DetailViewModel extends BaseViewModel<DetailNavigator> {
     }
 
     public void composeMessage() {
-//        detailNavigator.openComposeMessageScreen();
-        if (!isMessageSent) {
+        if (!isMessageSent.get()) {
             detailNavigator.openComposeMessageScreen();
-            isMessageSent = !isMessageSent;
+            isMessageSent.set(!isMessageSent.get());
         } else {
             sendSms();
         }
