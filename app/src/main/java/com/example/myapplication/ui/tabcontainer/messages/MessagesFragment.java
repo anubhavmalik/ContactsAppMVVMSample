@@ -67,8 +67,7 @@ public class MessagesFragment extends BaseFragment<FragmentMessagesBinding, Mess
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mFragmentMessagesBinding = getViewDataBinding();
-        mMessagesViewModel.fetchMessagesList();
-        setUp();
+//        setUp();
     }
 
     private void setUp() {
@@ -77,6 +76,12 @@ public class MessagesFragment extends BaseFragment<FragmentMessagesBinding, Mess
         mFragmentMessagesBinding.messagesRv.setAdapter(messagesRecyclerAdapter);
         mFragmentMessagesBinding.messagesRv.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
         messagesRecyclerAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onResume() {
+        setUp();
+        super.onResume();
     }
 
     @Override

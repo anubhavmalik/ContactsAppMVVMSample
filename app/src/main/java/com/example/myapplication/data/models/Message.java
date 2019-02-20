@@ -2,12 +2,12 @@ package com.example.myapplication.data.models;
 
 public class Message {
 
-    private int senderId;
+    private Contact contact;
     private String text;
     private long timestamp;
 
-    public Message(int senderId, String text, long timestamp) {
-        this.senderId = senderId;
+    public Message(Contact contact, String text, long timestamp) {
+        this.contact = contact;
         this.text = text;
         this.timestamp = timestamp;
     }
@@ -20,12 +20,12 @@ public class Message {
         this.timestamp = timestamp;
     }
 
-    public int getSenderId() {
-        return senderId;
+    public Contact getContact() {
+        return contact;
     }
 
-    public void setSenderId(int senderId) {
-        this.senderId = senderId;
+    public void setContact(Contact contact) {
+        this.contact = contact;
     }
 
     public String getText() {

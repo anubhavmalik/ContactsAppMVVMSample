@@ -24,7 +24,7 @@ public final class AppConstants {
     public static final String CONNECTION_QUALITY = "Connection-quality";
 
     public static final String CONTACT_ATTACH = "contactAttach";
-    public static final String API_KEY = "5f2d38e2";
+    public static final String API_KEY = "263815AefZZPrIn2d5c6c530e";
     public static final String API_OTP_SENDER = "ANUBHAVOTP";
 
     public static final String MESSAGES_KEY = "messagesKey";

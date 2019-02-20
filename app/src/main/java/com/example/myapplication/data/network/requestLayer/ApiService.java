@@ -21,7 +21,7 @@ public interface ApiService {
     // Declare all APIs here
 
 
-    @POST
+    @POST("sendotp.php")
     Call<MessageResponseWrapper> postSmsToApi(@Query("authkey") String authkey
             , @Query("message") String message
             , @Query("sender") String sender

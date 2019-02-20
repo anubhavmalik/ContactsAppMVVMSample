@@ -35,7 +35,7 @@ public class DetailViewModel extends BaseViewModel<DetailNavigator> {
         contactEmail = new ObservableField<>(contact.getEmail());
         contactInitials = new ObservableField<>(contact.getInitials());
         contactPhone = new ObservableField<>(contact.getPhone());
-        body = new ObservableField<>("Hi, your otp is : " + otp);
+        body = new ObservableField<>("Hello, your 6 digit otp is : " + otp);
     }
 
     public void setDetailNavigator(DetailNavigator detailNavigator) {
@@ -68,7 +68,7 @@ public class DetailViewModel extends BaseViewModel<DetailNavigator> {
                             if (response.body() != null) {
                                 if (response.body().getMessageStatus() != null) {
                                     if (response.body().getMessageStatus().equalsIgnoreCase(AppConstants.SMS_STATUS_SUCCESS)) {
-                                        JsonParseHelper.getInstance().addJsonTextMessageToContact(contact.getId(), body.get(), System.currentTimeMillis());
+                                        JsonParseHelper.getInstance().addJsonTextMessageToContact(contact, body.get(), System.currentTimeMillis());
                                         detailNavigator.endActivity();
                                     } else {
                                         detailNavigator.handleError(false);
@@ -87,6 +87,7 @@ public class DetailViewModel extends BaseViewModel<DetailNavigator> {
                     @Override
                     public void onFailure(Call<MessageResponseWrapper> call, Throwable t) {
                         detailNavigator.setLoading(false);
+                        detailNavigator.handleError(false);
                     }
                 });
     }

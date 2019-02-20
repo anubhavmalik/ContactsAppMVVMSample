@@ -69,8 +69,15 @@ public class TabContainerActivity extends BaseActivity<ActivityMainBinding, TabC
         tabContainerViewModel.setNavigator(this);
         mActivityMainBinding.tabContainerPager.setAdapter(tabAdapter);
         mActivityMainBinding.tabContainerTabLayout.setupWithViewPager(mActivityMainBinding.tabContainerPager, true);
+        mActivityMainBinding.tabContainerPager.setOffscreenPageLimit(1);
         tabAdapter.notifyDataSetChanged();
         mActivityMainBinding.invalidateAll();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        tabAdapter.notifyDataSetChanged();
     }
 
     @Override

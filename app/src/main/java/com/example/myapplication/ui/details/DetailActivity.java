@@ -11,6 +11,7 @@ import com.example.myapplication.R;
 import com.example.myapplication.base.BaseActivity;
 import com.example.myapplication.data.models.Contact;
 import com.example.myapplication.databinding.ActivityDetailBinding;
+import com.example.myapplication.ui.tabcontainer.TabContainerActivity;
 import com.example.myapplication.utils.AppConstants;
 import com.google.gson.Gson;
 
@@ -77,7 +78,7 @@ public class DetailActivity extends BaseActivity<ActivityDetailBinding, DetailVi
         // do something
         if(finishCurrent){
             Toast.makeText(this, "Oops! Something went wrong", Toast.LENGTH_SHORT).show();
-            finish();
+            startActivity(new Intent(this, TabContainerActivity.class).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP));
         }
     }
 

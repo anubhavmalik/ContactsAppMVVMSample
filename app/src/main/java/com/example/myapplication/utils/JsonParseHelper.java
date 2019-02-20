@@ -1,5 +1,7 @@
 package com.example.myapplication.utils;
 
+import android.util.Log;
+
 import com.example.myapplication.app.MyApplication;
 import com.example.myapplication.data.models.Contact;
 import com.example.myapplication.data.models.Message;
@@ -19,6 +21,8 @@ public class JsonParseHelper {
     private static SharedPrefsUtils sharedPrefsUtils;
     private static String json = "";
     private static String messageJson = "";
+    private static ArrayList<Message> messageArrayList = new ArrayList<>();
+    private Gson gson = new Gson();
 
     public static JsonParseHelper getInstance() {
         if (jsonParseHelper == null) {
@@ -88,33 +92,25 @@ public class JsonParseHelper {
         return null;
     }
 
-    public void addJsonTextMessageToContact(int contactId, String body, long timestamp) {
-        if (sharedPrefsUtils.getStringPreference(MyApplication.getNonUiContext(), AppConstants.MESSAGES_KEY) != null) {
-            messageJson = loadJSONFromAsset(false);
-            try {
-                JSONArray jsonArray = new JSONArray(json);
-                jsonArray.put(jsonArray.length(), new Gson().toJson(new Message(contactId, body, timestamp)));
-                sharedPrefsUtils.setStringPreference(MyApplication.getNonUiContext(), AppConstants.MESSAGES_KEY, jsonArray.toString());
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            return;
-        } else {
-            sharedPrefsUtils.setStringPreference(MyApplication.getNonUiContext(), AppConstants.MESSAGES_KEY, "[]");
-            addJsonTextMessageToContact(contactId, body, timestamp);
+    public void addJsonTextMessageToContact(Contact contact, String body, long timestamp) {
+        if(getMessagesArrayList().size()==0) {
+            messageArrayList = getMessagesArrayList();
         }
+        messageArrayList.add(new Message(contact, body, timestamp));
+        sharedPrefsUtils.setStringPreference(MyApplication.getNonUiContext(), AppConstants.MESSAGES_KEY, gson.toJson(messageArrayList));
     }
 
     public ArrayList<Message> getMessagesArrayList() {
-        ArrayList<Message> messageArrayList = new ArrayList<>();
         if (messageJson.isEmpty()) {
             messageJson = loadJSONFromAsset(false);
         }
         try {
+            messageArrayList.clear();
             JSONArray jsonArray = new JSONArray(messageJson);
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                messageArrayList.add(new Gson().fromJson(jsonObject.toString(), Message.class));
+                Log.d("TTTT", "Object added to list item : " + jsonObject.toString());
+                messageArrayList.add(gson.fromJson(jsonObject.toString(), Message.class));
             }
         } catch (JSONException e) {
             e.printStackTrace();

@@ -96,7 +96,7 @@ public class MessagesRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder
         public void onBind(int position) {
             final Message result = mContactsList.get(position);
             mContactsItemViewModel = new MessagesItemViewModel(result);
-
+            Log.d("PPPP", "bind hue");
             mBinding.setViewModel(mContactsItemViewModel);
 
             // Immediate Binding
